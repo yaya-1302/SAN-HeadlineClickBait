@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>SAN News Click Bait</title>
+  <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.png')}}" />
+
+  <!-- plugins:css -->
+  {% include '/partials/_header.html' %}
+  <!-- endinject -->
+
+
+  <!-- inject:css -->
+  {% block css %}
+
+  {% endblock %}
+  <!-- endinject -->
+
+</head>
+
+<body class="sidebar-fixed">
+  <div class="container-scroller">
+
+    <!-- partial:partials/_navbar.html -->
+    {% include '/partials/_navbar.html' %}
+    <!-- partial -->
+
+    <div class="container-fluid page-body-wrapper">
+
+      {% include '/partials/_sidebar.html' %}
+
+      <div class="main-panel">
+        {% block content %}
+
+        {% endblock %}
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  <!-- container-scroller -->
+  {% include '/partials/_footer.html' %}
+
+
+  <!-- Custom js for this page-->
+  {% block js %}
+
+  {% endblock %}
+  <!-- End custom js for this page-->
+</body>
+
+</html>
