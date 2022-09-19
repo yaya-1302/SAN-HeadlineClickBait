@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import json
-
+from src import controller
 # flask read views in "templates" folder
 # flask read asset in "static" folder
 
@@ -34,10 +34,6 @@ def to_form():
 def demo_page():
     return render_template('/views/demo.html')
 
-# =======================================================
-# logic started here
-
-
 @app.route('/identify', methods=['GET'])
 def san_headline_identification():
     judul = request.args.get('title')
@@ -53,8 +49,7 @@ def san_headline_identification():
 
 
 def is_clickbait(judul, model):
-    identify = judul
-    return True
+    return controller.identify_text(judul, model)
 
 
 app.run(debug=True)

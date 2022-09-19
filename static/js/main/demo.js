@@ -27,10 +27,10 @@ $(function () {
         $('#prediksi').removeClass('bg-success');
         if (res.is_clickbait) {
           $('#prediksi').addClass('bg-danger');
-          $('#prediksi').find('.text').html('CLICK BAIT')
+          $('#prediksi').find('.text').html('CLICKBAIT')
         } else {
           $('#prediksi').addClass('bg-success');
-          $('#prediksi').find('.text').html('BUKAN CLICK BAIT')
+          $('#prediksi').find('.text').html('BUKAN CLICKBAIT')
         }
         $('html, body').animate({
           scrollTop: $("#prediksi").offset().top
