@@ -4,7 +4,7 @@ import pickle
 import tensorflow as tf
 from tensorflow.keras.preprocessing import sequence
 import numpy as np
-
+import re
 
 
 def identify_result(result):
@@ -14,25 +14,23 @@ def identify_result(result):
     else:
         return False
 
-def identify_text(text, fitur):
+def identify_text(text):
     proses = Preprocessing(text)
-    token = None
-    if(fitur == '0'):
-        model = pickle.load(open('src/SAN_beta_2.sav', 'rb'))
-        token = pickle.load(open('src/tokenizer_beta_2.pkl', 'rb'))
-        clean = proses.processTweet()
-    elif(fitur == '1'):
-        model = pickle.load(open('src/SAN_beta_3.sav', 'rb'))
-        token = pickle.load(open('src/tokenizer_beta_3.pkl', 'rb'))
-        clean = proses.processTweet(stopword=False)
-    elif(fitur == '2'):
-        model = pickle.load(open('src/SAN_beta_4.sav', 'rb'))
-        token = pickle.load(open('src/tokenizer_beta_4.pkl', 'rb'))
-        clean = proses.processTweet(stemming=False)
-
+    model = pickle.load(open('src/SAN_beta_2.sav', 'rb'))
+    token = pickle.load(open('src/tokenizer_beta_2.pkl', 'rb'))
+    clean = proses.processTweet()
     seq = token.texts_to_sequences(clean)
     pad = sequence.pad_sequences(seq, maxlen=len(clean[0].split()))
     predict = model.predict(pad)
     return (identify_result(predict))
 
+def clean(text):
+    cleaned = text.lower()
+    # removing retweet and mention
+    cleaned = re.sub(r"(?:r?t?|v?i?a) ?@[a-z0-9_]+", "", cleaned)
+    # removing hastag
+    cleaned = re.sub(r"#[a-z0-9_]+", "", cleaned)
+    # removing hyperlinks in the tweet
+    cleaned = re.sub(r" ?https:\/\/t\.co\/[-a-zA-Z0-9@:%._\+~#=]{1,256}", "", cleaned)
+    return cleaned.title()
 

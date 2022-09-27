@@ -7,10 +7,7 @@
 import time
 from os.path import exists
 import pandas as pd
-from collections import Counter 
 import re
-import numpy as np
-import string
 from num2words import num2words
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 

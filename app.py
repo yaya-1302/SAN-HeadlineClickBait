@@ -8,7 +8,7 @@ from src import controller
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/dashboard')
 def index():
     return render_template('/views/dashboard.html')
 
@@ -29,27 +29,24 @@ def to_form():
 
 # code started here
 
+@app.route('/eval')
+def eval_page():
+    return render_template('/views/eval.html')
 
-@app.route('/demo')
+@app.route('/')
 def demo_page():
     return render_template('/views/demo.html')
 
 @app.route('/identify', methods=['GET'])
 def san_headline_identification():
     judul = request.args.get('title')
-    pengolahan = request.args.get('model')
-
-    is_cb = is_clickbait(judul, pengolahan)
+    clean_txt = controller.clean(judul)
+    is_cb = controller.identify_text(judul)
     return json.dumps(
         {
-            'judul': judul,
+            'judul': clean_txt,
             'is_clickbait': is_cb
         }
     ), 200, {'ContentType': 'application/json'}
-
-
-def is_clickbait(judul, model):
-    return controller.identify_text(judul, model)
-
 
 app.run(debug=True)

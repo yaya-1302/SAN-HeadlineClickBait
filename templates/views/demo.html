@@ -24,31 +24,8 @@
 
         <div class="row justify-content-center mt-2">
           <div class="col-8">
-            <input type="text" class="form-control form-control-lg" placeholder="Judul Berita" id="headline">
-          </div>
-          <div class="col-8 mt-3">
-            <label for="" style="font-weight: 600;">Pilihan Pra-Pengolahan Data</label>
-            <div class="form-group mx-3">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="model" id="model1" value="0">
-                  Normalisasi, Stemming, Stop Word Removal
-                  <i class="input-helper"></i></label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="model" id="model2" value="1" checked="">
-                  Normalisasi, Stemming
-                  <i class="input-helper"></i></label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="model" id="model3" value="2">
-                  Normalisasi, Stop Word Removal
-                  <i class="input-helper"></i></label>
-              </div>
-
-            </div>
+            <input autocomplete="off" type="text" maxlength='250' oninput="limitChar(this)" class="form-control form-control-lg" placeholder="Judul Berita" id="headline">
+            <p class="text-center" id="charCounter">250 Characters limit</p>
           </div>
         </div>
         <div class="row justify-content-center mt-3">
