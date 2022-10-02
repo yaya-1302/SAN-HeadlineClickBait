@@ -40,13 +40,18 @@ def demo_page():
 @app.route('/identify', methods=['GET'])
 def san_headline_identification():
     judul = request.args.get('title')
-    clean_txt = controller.clean(judul)
-    is_cb = controller.identify_text(judul)
-    return json.dumps(
-        {
-            'judul': clean_txt,
-            'is_clickbait': is_cb
-        }
-    ), 200, {'ContentType': 'application/json'}
+    len_judul = controller.text_length(judul)
+    if (len_judul) > 3 :
+        clean_txt = controller.clean(judul)
+        is_cb, acc = controller.identify_text(judul)
+        return json.dumps(
+            {
+                'judul': clean_txt,
+                'is_clickbait': is_cb,
+                'accuracy' : acc
+            }
+        ), 200, {'ContentType': 'application/json'}
+    else :
+        return 500
 
 app.run(debug=True)

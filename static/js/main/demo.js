@@ -21,6 +21,9 @@ $(function () {
     // get input "headline news"
     let title = $('#headline').val();
     // compute SAN from ajax with title as data
+    const btn = document.querySelector(".btn-custom");
+    btn.classList.toggle("btn-loading")
+
     $.ajax({
       type: 'GET',
       url: "/identify",
@@ -29,9 +32,13 @@ $(function () {
       },
       dataType: "json",
       error: function (xhr) {
-        alert('something wrong')
+        $('#identify').removeClass('btn-loading');
+
+        alert('Judul tidak dapat diidentifikasi');
       },
       success: function (res) {
+        $('#identify').removeClass('btn-loading');
+
         $('#result-section').prop('hidden', false);
         $('#result-judul').html(res.judul)
 
@@ -40,13 +47,16 @@ $(function () {
         if (res.is_clickbait) {
           $('#prediksi').addClass('bg-danger');
           $('#prediksi').find('.text').html('CLICKBAIT')
+          $('#prediksi').find('.accuracy').html(res.accuracy)
         } else {
           $('#prediksi').addClass('bg-success');
           $('#prediksi').find('.text').html('BUKAN CLICKBAIT')
+          $('#prediksi').find('.accuracy').html(res.accuracy)
         }
         $('html, body').animate({
           scrollTop: $("#prediksi").offset().top
         }, 0);
+
       }
     })
   })

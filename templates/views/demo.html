@@ -13,6 +13,37 @@
     font-size: 16px;
     font-weight: 600;
   }
+
+  .btn-loading .btn-txt{
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  .btn-loading::after{
+    content: "" !important;
+    position: absolute;
+    width: 20px !important;
+    height: 20px !important;
+    top: 5 !important;
+    bottom: 5 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: auto !important;
+    border: 2px solid transparent !important;
+    border-top-color: #ffffff !important;
+    border-radius: 50% !important;
+    animation: btn-loading-spinner 1s ease infinite !important;
+  }
+
+  @keyframes btn-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+    
+  }
 </style>
 <div class="content-wrapper">
   <div class="row justify-content-center mt-auto mb-auto" id="input-section">
@@ -30,7 +61,9 @@
         </div>
         <div class="row justify-content-center mt-3">
           <div class="col-3">
-            <button class="btn btn-block w-100 btn-dark" type="button" id="identify">Submit</button>
+            <button class="btn btn-block w-100 btn-dark btn-custom" type="button" id="identify">
+              <span class="btn-txt">Submit</span>
+            </button>
           </div>
         </div>
       </div>
@@ -46,6 +79,7 @@
           <div class="col-5 text-center ml-lg-auto mr-lg-auto">
             <div id="prediksi" class="card card-body text-white p-3 w-75 mx-auto">
               <h4 class="text text-center" style="font-weight: 700;"></h4>
+              <h5 class="accuracy text-center"></h5>
             </div>
           </div>
         </div>

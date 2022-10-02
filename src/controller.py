@@ -8,11 +8,12 @@ import re
 
 
 def identify_result(result):
-    nilai = np.argmax(tf.matmul(result, tf.constant([1, 0, 1, 0, 0, 1, 0, 1], shape=[4, 2], dtype=tf.float32)), 1)
+    val = tf.matmul(result, tf.constant([1, 0, 1, 0, 0, 1, 0, 1], shape=[4, 2], dtype=tf.float32))
+    nilai = np.argmax(val, 1)
     if nilai[0] == 1:
-       return True
+       return True, str(val.numpy()[0][1])
     else:
-        return False
+        return False, str(val.numpy()[0][0])
 
 def identify_text(text):
     proses = Preprocessing(text)
@@ -22,7 +23,8 @@ def identify_text(text):
     seq = token.texts_to_sequences(clean)
     pad = sequence.pad_sequences(seq, maxlen=len(clean[0].split()))
     predict = model.predict(pad)
-    return (identify_result(predict))
+    result, value = identify_result(predict)
+    return result, value
 
 def clean(text):
     cleaned = text.lower()
@@ -33,4 +35,7 @@ def clean(text):
     # removing hyperlinks in the tweet
     cleaned = re.sub(r" ?https:\/\/t\.co\/[-a-zA-Z0-9@:%._\+~#=]{1,256}", "", cleaned)
     return cleaned.title()
+
+def text_length(text):
+    return len(text.split())
 
