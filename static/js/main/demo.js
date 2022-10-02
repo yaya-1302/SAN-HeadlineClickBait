@@ -33,7 +33,6 @@ $(function () {
       dataType: "json",
       error: function (xhr) {
         $('#identify').removeClass('btn-loading');
-
         alert('Judul tidak dapat diidentifikasi');
       },
       success: function (res) {
