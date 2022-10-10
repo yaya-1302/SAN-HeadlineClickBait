@@ -8,10 +8,13 @@
   p {
     font-size: 15px;
   }
-
+ 
   input[type=text] {
     font-size: 16px;
     font-weight: 600;
+  }
+  .input-error{
+    border:2px solid red;
   }
 
   .btn-loading .btn-txt{
@@ -49,13 +52,14 @@
   <div class="row justify-content-center mt-auto mb-auto" id="input-section">
     <div class="col-9">
       <div class="card card-body">
-        <h3 class="text-center mt-2 mb-4" style="font-weight: 700;">CLICKBAIT IDENTIFICATION</h3>
-        <p class="text-center">Melakukan identifikasi apakah judul yang anda masukkan terindikasi <i>clickbait</i> atau
-          tidak</p>
+        <h3 class="text-center mt-2 mb-4" style="font-weight: 700;">CLICKBAIT DETECTION</h3>
+        <p class="text-center">Melakukan pendeteksian judul berita bahasa Indonesia yang anda masukkan terindikasi <i>clickbait</i> atau
+          tidak menggunakan <i>GloVe Word Embedding</i> dan <i>Self-attentive Network</i></p>
 
         <div class="row justify-content-center mt-2">
           <div class="col-8">
-            <input autocomplete="off" type="text" maxlength='250' oninput="limitChar(this)" class="form-control form-control-lg" placeholder="Judul Berita" id="headline">
+            <input autocomplete="off" type="text" data-max-length="250" data-max-length-warning-container="name" oninput="limitChar(this)" class="form-control form-control-lg js-max-char-warning" placeholder="Judul Berita" id="headline">
+            <span class="name"></span>
             <p class="text-center" id="charCounter">250 Characters limit</p>
           </div>
         </div>

@@ -11,36 +11,36 @@
 </style>
 
 <div class="content-wrapper">
-    <div class="row justify-content-center mt-auto mb-auto" id="input-section">
+    <div class="row justify-content-center mt-auto mb-auto">
       <div class="col-9">
         <div class="card card-body">
           <h3 class="text-center mt-2 mb-4" style="font-weight: 700;">EVALUASI MODEL SELF-ATTENTIVE NETWORK</h3>
-          <p class="text-center"><img src="{{url_for('static', filename='images/img/cf_matrix.png')}}" alt="confusion_matrix"></p>
+          <p class="text-center"><img src="{{url_for('static', filename='images/img/cf_matrix_fold4.png')}}" alt="confusion_matrix"></p>
           <p class="text-center">Confusion Matrix</p>
-          <p class="text-justify">Data yang digunakan pada pengujian ini menggunakan <b>6000 data</b> dengan pembagian <b>3000 data</b> berlabel <i>clickbait</i>
-        dan <b>3000 data</b> berlabel <i>non-clickbait</i>. Data yang digunakan untuk training sebesar <b>4800 data</b> dan sisanya digunakan sebagai data testing. 
-        Berdasarakan <i>data testing</i> didapatkan <i>Confusion Matrix</i> di atas, sehingga dapat dihitung nilai berikut :</p>
+          <p class="text-justify">Data yang digunakan pada pengujian ini menggunakan <b>2000 data</b> dengan pembagian <b>1000 data</b> berlabel <i>clickbait</i>
+          dan <b>1000 data</b> berlabel <i>non-clickbait</i>. Berdasarakan <i>data testing</i> didapatkan <i>Confusion Matrix</i> di atas, sehingga dapat dihitung nilai berikut :</p>
           <div class="row">
             <div class="col-sm-12">
               <div class="statistics-details d-flex align-items-center justify-content-between">
-                <div>
+                <div> 
                   <p class="statistics-title">Akurasi</p>
-                  <h3 class="rate-percentage"><b>0.84</b></h3>
+                  <h3 class="rate-percentage"><b>0.802</b></h3>
                 </div>
                 <div>
                   <p class="statistics-title">Presisi</p>
-                  <h3 class="rate-percentage"><b>0.83</b></h3>
+                  <h3 class="rate-percentage"><b>0.8057</b></h3>
                 </div>
                 <div>
                   <p class="statistics-title">Recall</p>
-                  <h3 class="rate-percentage"><b>0.84</b></h3>
+                  <h3 class="rate-percentage"><b>0.7960</b></h3>
                 </div>
                 <div>
                   <p class="statistics-title">F1-Score</p>
-                  <h3 class="rate-percentage"><b>0.83</b></h3>
+                  <h3 class="rate-percentage"><b>0,8038</b></h3>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>

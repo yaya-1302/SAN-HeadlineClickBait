@@ -9,10 +9,31 @@ let limitChar = (element) => {
   
   if (charLen > maxChar) 
   {
-      ele.value = ele.value.substring(0, maxChar);
-      p.innerHTML = 0 + ' characters remaining'; 
+      p.innerHTML = 'Limit exceeded'; 
   }
 }
+
+$.fn.maxCharWarning = function() {
+
+  return this.each(function() {
+    var el                    = $(this),
+        maxLength             = el.data('max-length'),
+        warningContainerClass = el.data('max-length-warning-container'),
+        warningContainer      = $('.'+warningContainerClass)
+    ;
+    el.keyup(function() {
+      var length = el.val().length;      
+      if (length >= maxLength){
+        el.addClass('input-error');
+      }
+      else if (length < maxLength) {
+        el.removeClass('input-error');
+      }
+    });
+  });
+};
+
+$('.js-max-char-warning').maxCharWarning();
 
 $(function () {
   

@@ -1,0 +1,74 @@
+{% extends 'root.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='vendors/select2/select2.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='vendors/select2-bootstrap-theme/select2-bootstrap.min.css')}}">
+{% endblock %}
+{% block content %}
+<style>
+    *{
+      scroll-behavior: smooth;
+    }
+    p {
+      font-size: 15px;
+    }
+</style>
+
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Grafik Loss</h4>
+          <p class="card-description">
+            Grafik loss dari data <i>training</i></p>
+            <div class="row justify-content-center mt-5">
+              <p class="text-center"><img src="{{url_for('static', filename='images/img/loss_4.png')}}" alt="confusion_matrix"></p>
+            </div>
+            <div class="row justify-content-center mt-4">
+              <p class="text-justify">
+                Terlihat bahwa nilai loss untuk data training menurun secara drastis pada epoch awal. 
+                Untuk nilai loss validation data, terlihat menurun secara perlahan, 
+                kedua nilai loss di akhir epoch terlihat menjadi datar dan jaraknya tidak terlalu jauh. 
+                Hal ini berarti model dapat mengeneralisasikan data yang belum pernah dipelajari dengan baik. 
+              </p>
+            </div>
+             
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Grafik Accuracy</h4>
+          <p class="card-description">
+            Grafik accuracy dari data <i>training</i>
+          </p>
+          <div class="row justify-content-center">
+            <p class="text-center"><img src="{{url_for('static', filename='images/img/acc_4.png')}}" alt="confusion_matrix"></p>
+          </div>
+          <div class="row justify-content-center mt-1">
+            <p class="text-justify">
+              Nilai accuracy untuk data train meningkat secara drastis di awal epoch, 
+              setelahnya peningkatan nilai accuracy terjadi secara perlahan 
+              dan peningkatannya tidak terlalu signifikan, 
+              yang mengindikasikan model tidak memerlukan terlalu banyak epoch dalam proses training. 
+              Selain itu, kurva validation data juga menunjukkan peningkatan dan accuracy nya selalu 
+              di atas accuracy data train hal ini menunjukkan bahwa model tidak hanya mengingat 
+              data train tetapi model belajar dari data tersebut, 
+              sehingga model memahami data validation yang diberikan. 
+            </p>
+          </div>              
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{{url_for('static', filename='vendors/typeahead.js/typeahead.bundle.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendors/select2/select2.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/file-upload.js')}}"></script>
+<script src="{{url_for('static', filename='js/typeahead.js')}}"></script>
+<script src="{{url_for('static', filename='js/select2.js')}}"></script>
+{% endblock %}

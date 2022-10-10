@@ -25,7 +25,7 @@ def to_gallery():
 
 @app.route('/formcontrol')
 def to_form():
-    return render_template('/views/basic_elements.html')
+    return render_template('/views/eval_training.html')
 
 # code started here
 
@@ -40,8 +40,8 @@ def demo_page():
 @app.route('/identify', methods=['GET'])
 def san_headline_identification():
     judul = request.args.get('title')
-    len_judul = controller.text_length(judul)
-    if (len_judul) > 3 :
+    word_judul, len_judul = controller.text_length(judul)
+    if word_judul > 3 and len_judul < 250 :
         clean_txt = controller.clean(judul)
         is_cb, acc = controller.identify_text(judul)
         return json.dumps(
