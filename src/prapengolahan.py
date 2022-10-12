@@ -30,6 +30,7 @@ class Preprocessing:
         dataList = data.split()
         for i in range(len(dataList)):
             if dataList[i].isnumeric():
+              if(int(dataList[i]) < 20):
                 dataList[i] = num2words(int(dataList[i]), lang='id')
         result = ' '.join(dataList)
         # untuk menghapus angka yang tidak dapat di konversi, seperti float ataupun currency
@@ -46,22 +47,26 @@ class Preprocessing:
         stemmer = factory.create_stemmer()
         result = stemmer.stem(data)
         return result
+
+    def normalisasi(self, data):
+        data = data.lower()
+        # removing retweet and mention
+        cleantweet = re.sub(r"(?:r?t?|v?i?a) ?@[a-z0-9_]+", "", data)
+        # removing hastag
+        cleantweet = re.sub(r"#[a-z0-9_]+", "", cleantweet)
+        # removing hyperlinks in the tweet
+        cleantweet = re.sub(r" ?https:\/\/t\.co\/[-a-zA-Z0-9@:%._\+~#=]{1,256}", "", cleantweet)
+        #remove special character
+        cleantweet = re.sub(r"[^a-z0-9 ]", "", cleantweet)
+        cleantweet.strip()
+        return cleantweet
  
     def processTweet(self,  stemming=True, stopword=True):
         cleanedList = []
         if type(self.data) is list:
             for data in self.data:
                 try:
-                    cleantweet = data.lower()
-                    # removing retweet and mention
-                    cleantweet = re.sub(r"(?:r?t?|v?i?a) ?@[a-z0-9_]+", "", cleantweet)
-                    # removing hastag
-                    cleantweet = re.sub(r"#[a-z0-9_]+", "", cleantweet)
-                    # removing hyperlinks in the tweet
-                    cleantweet = re.sub(r" ?https:\/\/t\.co\/[-a-zA-Z0-9@:%._\+~#=]{1,256}", "", cleantweet)
-                    #remove special character
-                    cleantweet = re.sub(r"[^a-z0-9 ]", "", cleantweet)
-                    cleantweet.strip()
+                    cleantweet = self.normalisasi(data)
                     #stemming
                     if stemming != True:
                         pass
@@ -81,16 +86,7 @@ class Preprocessing:
                     print('failed on_status,',str(e))
                     time.sleep(3)
         else:
-            cleantweet = self.data.lower()
-            # removing retweet and mention
-            cleantweet = re.sub(r"(?:r?t?|v?i?a) ?@[a-z0-9_]+", "", cleantweet)
-            # removing hastag
-            cleantweet = re.sub(r"#[a-z0-9_]+", "", cleantweet)
-            # removing hyperlinks in the tweet
-            cleantweet = re.sub(r" ?https:\/\/t\.co\/[-a-zA-Z0-9@:%._\+~#=]{1,256}", "", cleantweet)
-            #remove special character
-            cleantweet = re.sub(r"[^a-z0-9 ]", "", cleantweet)
-            cleantweet.strip()
+            cleantweet = self.normalisasi(self.data)
             #stemming
             if stemming != True:
                 pass
@@ -119,4 +115,3 @@ class Preprocessing:
         newFile = self.dataset.to_csv(namaFile, index=False)
         print("Dataset hasil Preprocessing telah tersimpan")
         return namaFile
-

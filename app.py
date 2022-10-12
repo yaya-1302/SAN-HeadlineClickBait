@@ -22,12 +22,11 @@ def to_accordions():
 def to_gallery():
     return render_template('/views/gallery.html')
 
+# code started here
 
-@app.route('/formcontrol')
+@app.route('/eval_training')
 def to_form():
     return render_template('/views/eval_training.html')
-
-# code started here
 
 @app.route('/eval')
 def eval_page():

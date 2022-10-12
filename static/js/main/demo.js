@@ -17,9 +17,7 @@ $.fn.maxCharWarning = function() {
 
   return this.each(function() {
     var el                    = $(this),
-        maxLength             = el.data('max-length'),
-        warningContainerClass = el.data('max-length-warning-container'),
-        warningContainer      = $('.'+warningContainerClass)
+        maxLength             = el.data('max-length')
     ;
     el.keyup(function() {
       var length = el.val().length;      

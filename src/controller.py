@@ -1,3 +1,4 @@
+
 from src.prapengolahan import Preprocessing
 import pickle
 import tensorflow as tf
@@ -87,4 +88,3 @@ def clean(text):
 
 def text_length(text):
     return len(text.split()), len(text)
-
