@@ -7,21 +7,6 @@ from src import controller
 
 app = Flask(__name__)
 
-
-@app.route('/dashboard')
-def index():
-    return render_template('/views/dashboard.html')
-
-
-@app.route('/accordions')
-def to_accordions():
-    return render_template('/views/accordions.html')
-
-
-@app.route('/gallery')
-def to_gallery():
-    return render_template('/views/gallery.html')
-
 # code started here
 
 @app.route('/eval_training')
