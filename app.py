@@ -38,7 +38,7 @@ def demo_page():
 
 @app.route('/identify', methods=['GET'])
 def san_headline_identification():
-    judul = request.args.get('title')
+    judul = request.args.get('title').strip()
     word_judul, len_judul = controller.text_length(judul)
     if word_judul > 3 and len_judul < 250 :
         clean_txt = controller.clean(judul)
