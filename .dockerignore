@@ -1,0 +1,3 @@
+.gitignore
+.dockerignore
+**/__pycache__
