@@ -24,7 +24,7 @@ class Preprocessing:
         else:
             self.data = data
                
-        self.stopwords = pd.read_csv('/home/asus/Desktop/clickbait/src/stopwords.csv')['Kata'].tolist()
+        self.stopwords = pd.read_csv('/src/stopwords.csv')['Kata'].tolist()
         
     def numtoword(self, data):
         dataList = data.split()
