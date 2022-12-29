@@ -7,6 +7,7 @@ import numpy as np
 import re
 from tensorflow import keras
 from tensorflow.keras import layers
+from os.path import abspath
 
 class self_attention(layers.Layer):
     def __init__(self,**kwargs):
@@ -62,13 +63,13 @@ def identify_result(result):
 
 def identify_text(text):
     proses = Preprocessing(text)
-    model = tf.keras.models.load_model('src/model_10epoch_fold_4.h5', 
+    model = tf.keras.models.load_model(abspath('src/model_10epoch_fold_4.h5'), 
                                           custom_objects = {
                                               "self_attention": self_attention,
                                               "custom_loss": custom_loss,
                                               "custom_accuracy": custom_accuracy
                                           })
-    token = pickle.load(open('src/tokenizer_final.pkl', 'rb'))
+    token = pickle.load(open(abspath('src/tokenizer_final.pkl'), 'rb'))
     clean = proses.processTweet()
     seq = token.texts_to_sequences(clean)
     pad = sequence.pad_sequences(seq, maxlen=len(clean[0].split()))

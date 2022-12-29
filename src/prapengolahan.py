@@ -5,7 +5,7 @@
 
 
 import time
-from os.path import exists
+from os.path import exists, abspath
 import pandas as pd
 import re
 from num2words import num2words
@@ -24,7 +24,7 @@ class Preprocessing:
         else:
             self.data = data
                
-        self.stopwords = pd.read_csv('/src/stopwords.csv')['Kata'].tolist()
+        self.stopwords = pd.read_csv(abspath('src/stopwords.csv'))['Kata'].tolist()
         
     def numtoword(self, data):
         dataList = data.split()
